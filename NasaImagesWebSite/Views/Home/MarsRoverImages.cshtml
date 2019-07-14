@@ -1,0 +1,78 @@
+﻿@*@model List<NasaImagesWebSite.Models.Photo>*@
+@model NasaImagesWebSite.Models.Photos
+@{
+    ViewBag.Title = "Mars Rover Images";
+}
+<body>
+    <h2>Mars Rover Images</h2>
+    <table style="width:100%;border:thin;background-color:bisque">
+        @*<tr><td style="width:20%">@Html.Label("Date Of Image taken")</td><td width="80%">@Html.DropDownListFor(m => m.Dates, Model.Dates.Select(d => new SelectListItem { Text = d.ToShortDateString(), Value = d.Date.ToShortDateString() }), "Select Date", new { id = "ddDates" })</td></tr>*@
+        <tr>
+            <td style="width:20%">@Html.Label("Date Of Image taken")</td>
+            <td width="80%">
+                <select id="sel">
+                    <option value="2017-2-27">02/27/17</option>
+                    <option value="2018-6-2">June 2, 2018</option>
+                    <option value="2016-7-13">July 13, 2016</option>
+                    <option value="2018-4-31">April 31, 2018</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:20%"> @Html.Label("List of Images")</td>
+            <td>
+                @*@Html.ListBox("lstImages", new SelectList(new[] { "" }),
+                    new { @class = "listBox", @style = "width: 150px; height:150px; margin:15px;" })*@
+
+                @Html.ListBoxFor(m => m.photos, Model.photos.Select(
+                    p => new SelectListItem { Text = "image id:" + p?.id.ToString() + " Image src:" + p?.img_src, Value = p?.img_src }), new { @class = "listBox" })
+            </td>
+        </tr>
+    </table>
+    <div>
+        <img id="imgid" src="" />
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            @*$("#sel").change(function () {
+                var selDate = $("#sel option:selected").val();
+                $.ajax({
+                    url: "MarsRoverImages?dt=" + selDate,
+                    success: function (data) {
+
+                        //$.each(data, function (key, val) {
+                        //    $('.lstImages').append('<option id="' + key + '">' + data.img_src + '></option>');
+                        //})
+                    }
+                });
+            });*@
+
+            $("#sel").change(function () {
+                var selDate = $("#sel option:selected").val();
+                $.ajax({
+                    url: "MarsRoverImages",
+                    data: ''+ selDate + '',
+                    type: 'POST',
+                    type: 'traditional',
+                    dataType:"json",
+                    success: function (data) {
+                        alert(data);
+                        @*if (data.photos[0].img_src =="") {
+                        @Html.Action("ShowUpdatedListBox");
+                        }*@
+                        //$.each(data, function (key, val) {
+                        //    $('.lstImages').append('<option id="' + key + '">' + data.img_src + '></option>');
+                        //})
+                    }
+                });
+            });
+
+
+        })
+
+    </script>
+
+</body>
+
+
