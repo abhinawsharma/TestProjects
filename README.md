@@ -10,10 +10,13 @@ by usubng the Nuget console or command line
 HOW TO USE:
 1) copy all files in a local folder
 3) Create a website (name it NasaImages) in IIS to point to <Root>\Source\WatchGuard\NasaImages
-4) make sure you have this appSettings in the web.config -- <add key="Mars_Photos_URL" value="https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos" />
-5) app.config in the TestClient should have the correct values for the url. <add key="API_BaseURL" value="http://localhost/NasaImages/"/>
+4) make sure you have this appSettings in the web.config -- key="Mars_Photos_URL" value="https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos"
+5) app.config in the TestClient should have the correct values for the url. key="API_BaseURL" value="http://localhost/NasaImages/"
 6) Make sute NasaImages.Tests project has this config entry. <add key="Mars_Photos_URL" value="https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos" />
 7) Run the TestClient.exe from the debug folder.
+8) Select a date from dropdown, Then click on the Download images. Wait till the images appear in the Grid on the left bottom.
+  select a row to see the image for that row. 
+  You can download a simgle image or all images for that day.
 
 Highlights:
 1) Uses Unity for Ioc. 
