@@ -1,4 +1,5 @@
 # TestProjects
+Intention of this branch is to convert to .NET CORE 3.1.1
 Project consists of 4 projects
 1) NasaImages (a restfull WebAPI)
 2) TestClient (a test client to consume the WebAPI and display the results)
